@@ -1,0 +1,34 @@
+version: '3'
+services:
+  drupal:
+    image: drupal
+    ports:
+      - 32400:80
+    volumes:
+      - drupal-modules:/var/www/html/modules
+      - drupal-profiles:/var/www/html/profiles
+      - drupal-sites:/var/www/html/sites
+      - drupal-themes:/var/www/html/themes
+    networks:
+      - drupal-network
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
+    volumes:
+      - drupal-db:/var/lib/postgresql/data
+    networks:
+      - drupal-network
+
+volumes:
+  drupal-modules:
+  drupal-profiles:
+  drupal-sites:
+  drupal-themes:
+  drupal-db:
+
+networks:
+  drupal-network:

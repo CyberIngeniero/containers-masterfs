@@ -5,6 +5,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 RUN apk add --update nodejs npm
 RUN npm install
-COPY . .
+RUN npm install -g nodemon
+copy . .
 EXPOSE 8080
-CMD [ "node", "index.js" ]
+CMD [ "nodemon", "./src/index.js" ]
