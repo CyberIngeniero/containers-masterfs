@@ -18,11 +18,8 @@ spec:
         ports:
         - containerPort: 80
         env:
-        - name: PG_HOST
-          value: postgres-service
-        - name: PG_USER
-          value: postgres
-        - name: PG_PASSWORD
-          value: example
-        - name: PG_DB
-          value: drupaldb
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: postgres-password
