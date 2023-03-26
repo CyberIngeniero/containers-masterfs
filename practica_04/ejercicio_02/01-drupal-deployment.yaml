@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: drupal-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: drupal
+  template:
+    metadata:
+      labels:
+        app: drupal
+    spec:
+      containers:
+      - name: drupal
+        image: drupal:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: PG_HOST
+          value: postgres-service
+        - name: PG_USER
+          value: postgres
+        - name: PG_PASSWORD
+          value: example
+        - name: PG_DB
+          value: drupaldb
