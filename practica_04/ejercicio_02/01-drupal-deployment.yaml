@@ -30,5 +30,5 @@ spec:
               key: postgres-user
         - name: POSTGRES_DATABASE
           value: drupaldb
-        - name: POSTGRES-HOST
-          value: postgres
+        - name: POSTGRES_HOST
+          value: postgres-service
